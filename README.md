@@ -197,12 +197,14 @@ Setelah proses selesai, program looping kembali ke menu utama.
 
 <img width="214" height="74" alt="image" src="https://github.com/user-attachments/assets/66404aab-41ea-4325-9a7c-39a28b0d560c" />
 
+<br>
 
 
 
 <img width="250" height="78" alt="image" src="https://github.com/user-attachments/assets/ef521df3-f869-4519-af20-30faf0f49e95" />
 
 
+<br>
 
 
 <img width="313" height="170" alt="image" src="https://github.com/user-attachments/assets/c9982308-a883-4f33-9a88-e912846741d1" />
@@ -232,6 +234,7 @@ Setelah proses selesai, program looping kembali ke menu utama. Perulangan juga t
 
 <img width="185" height="35" alt="image" src="https://github.com/user-attachments/assets/3094e0f7-7935-4cd0-ad46-cb458baf2c95" />
 
+<br>
 
 
 <img width="188" height="28" alt="image" src="https://github.com/user-attachments/assets/0e402175-7750-4668-9b9e-10cd2c116d2b" />
@@ -263,5 +266,80 @@ Penjelasan Validasi Menu
 
 
 Pada proses ini, pengguna memasukkan pilihan menu 8, sedangkan menu yang tersedia hanya dari 1–7. Program menolak input tersebut dan menampilkan pesan bahwa nilai harus berada di antara 1 dan 7, kemudian pengguna diminta memasukkan pilihan yang benar.
+
+# 3. Penerapan encapsulation dan Inheritance
+
+## Encapsulation
+
+<img width="238" height="94" alt="image" src="https://github.com/user-attachments/assets/f599b35e-edb7-4300-a118-8130a6591a84" />
+
+Pada class Member, encapsulation diterapkan dengan access modifier private pada atribut idMember, nama, usia, paket, tanggalDaftar, dan tanggalBerakhir, sehingga data tidak dapat diakses langsung dari luar class. Data diambil lewat getter dan diubah lewat setter yang juga memvalidasi input, misalnya nama minimal 3 karakter dan usia 15 sampai 100 tahun. Atribut idMember dan tanggalDaftar bersifat final dan tidak memiliki setter, sehingga nilainya tidak dapat diubah setelah objek dibuat. Dengan begitu, data member menjadi lebih aman dan terkontrol.
+
+<img width="180" height="46" alt="image" src="https://github.com/user-attachments/assets/318da7d9-e160-4a19-a5f8-61d5ef3a1784" />
+
+Pada enum PaketGym, atribut nama, harga, dan durasi dideklarasikan private final, sehingga datanya tidak dapat diakses langsung dari luar dan nilainya hanya diisi sekali melalui constructor saat konstanta enum dibuat. Nilai tersebut tidak dapat diubah lagi, dan hanya dapat dibaca lewat getter, yaitu getNama(), getHarga(), dan getDurasi(). Dengan begitu, data paket gym, yaitu BULANAN (Rp350.000, 30 hari) dan TAHUNAN (Rp3.500.000, 365 hari), menjadi konsisten, aman, dan tidak berubah selama program berjalan.
+
+## Inhiritance
+
+<img width="280" height="35" alt="image" src="https://github.com/user-attachments/assets/3e5f8f51-cdd5-4444-8b00-dc83001cea96" />
+
+<br>
+
+
+<img width="480" height="49" alt="image" src="https://github.com/user-attachments/assets/e94e7850-bfb7-43b8-895a-7a6dde90068e" />
+
+
+Pada class MemberPremium dan MemberReguler, inheritance (pewarisan) diterapkan dengan keyword extends. Artinya, kedua class ini otomatis memiliki atribut dan method milik class Member, seperti nama, usia, paket, getter, dan setter, tanpa perlu menulisnya lagi.
+
+Pada MemberReguler, super(...) dipakai untuk mengirim data ke class Member agar data tersebut divalidasi dan disimpan di sana. Pada MemberPremium, ada tambahan atribut biayaTambahan sebesar 500000 yang hanya dimiliki member Premium. Jadi, kedua class memakai dasar yang sama dari Member, tetapi tetap punya ciri masing-masing.
+
+
+# 4.Penerapan polymorphism dan abstraction
+
+## polymorphism
+
+<img width="467" height="307" alt="image" src="https://github.com/user-attachments/assets/4f6c6a53-1f5b-40c0-b52a-9fc2a44134a6" />
+
+
+<br>
+
+
+
+<img width="512" height="150" alt="image" src="https://github.com/user-attachments/assets/7f9dcbf6-d4de-40ec-8385-86d1a6980ff0" />
+
+
+
+
+Pada class MemberPremium dan MemberReguler, polymorphism (polimorfisme) diterapkan dengan menulis ulang method dari class induk menggunakan @Override. Method getJenisMember() dan getFasilitas() ada di kedua class, tetapi isinya berbeda. 
+
+MemberPremium mengembalikan “Premium” dengan fasilitas lengkap (gym 24 jam, personal trainer, sauna, dan lainnya), sedangkan MemberReguler mengembalikan “Standar” dengan fasilitas dasar (alat gym, loker harian, dan kamar mandi standar).
+
+Method getBiaya() juga ditulis ulang di MemberPremium, yaitu super.getBiaya() + getBiayaTambahan(), sehingga biayanya adalah harga paket ditambah Rp500.000, sedangkan MemberReguler memakai getBiaya() bawaan dari Member tanpa tambahan. Jadi, method yang namanya sama bisa menghasilkan hasil berbeda tergantung jenis member-nya.
+
+## abstraction
+
+<img width="481" height="43" alt="image" src="https://github.com/user-attachments/assets/6498b16a-b251-41ae-8f9d-347b99ccc226" />
+
+
+<br>
+
+
+
+<img width="251" height="24" alt="image" src="https://github.com/user-attachments/assets/3932d941-34dd-4366-904b-541e781297e0" />
+
+Pada class Member, abstraction (abstraksi) diterapkan dengan menulis abstract class, sehingga Member tidak bisa dibuat objeknya secara langsung dan hanya menjadi dasar bagi class turunannya, yaitu MemberReguler dan MemberPremium. 
+
+Di dalamnya ada method abstrak getJenisMember() yang hanya berisi nama method tanpa isi. Method ini wajib ditulis ulang oleh class turunan, yaitu MemberReguler mengisinya dengan “Standar” dan MemberPremium mengisinya dengan “Premium”. Class Member juga mengimplementasikan interface MemberBenefit yang mewajibkan adanya method getFasilitas(). 
+
+Dengan begitu, hal yang sama cukup ditulis satu kali di Member, sedangkan hal yang berbeda diatur oleh masing-masing class turunan.
+
+
+# 5. Penerapan Nilai Tambah
+## Interface
+
+<img width="228" height="70" alt="image" src="https://github.com/user-attachments/assets/95384b11-4da6-43a0-b8d3-0d9cbdd21650" />
+
+Interface MemberBenefit digunakan untuk menentukan aturan bahwa setiap member memiliki fasilitas yang dapat diakses melalui method getFasilitas(). Interface ini kemudian diimplementasikan oleh class Member sehingga fasilitas dapat disesuaikan berdasarkan jenis member.
+
 
 
