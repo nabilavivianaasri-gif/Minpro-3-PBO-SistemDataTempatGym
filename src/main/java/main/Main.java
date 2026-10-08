@@ -1,0 +1,10 @@
+package main;
+
+import view.Menu;
+
+public class Main {
+    public static void main(String[] args) {
+        Menu menuUtama = new Menu();
+        menuUtama.tampilkanMenu();
+    }
+}
